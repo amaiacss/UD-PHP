@@ -23,6 +23,7 @@ class ControladorFormularios{
 				// creando este token se puede usar como el id, para el input hidden, en vez del id númerico
 				$token = md5($_POST["registroNombre"]."+".$_POST["registroEmail"]);
 
+				// SEGURIDAD: Encriptar la contraseña crypt_BLOWFISH, 2º parametro salt 22 caracteres cuales yo quiera, es en lo que se basará la encriptación
 				$encriptarPassword = crypt($_POST["registroPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
 				$datos = array("token" => $token,
@@ -73,9 +74,10 @@ class ControladorFormularios{
 			$valor = $_POST["ingresoEmail"];
 
 			$respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
-
+			
 			$encriptarPassword = crypt($_POST["ingresoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
+			// Nº MAXIMO DE INTENTOS FALLIDOS PARA PREVENIR EL INTENTO DE INICIO DE SESIÓN POR UN BOT PROBANDO POSIBLES PASS
 			if($respuesta["email"] == $_POST["ingresoEmail"] && $respuesta["password"] == $encriptarPassword){
 
 				ModeloFormularios::mdlActualizarIntentosFallidos($tabla, 0, $respuesta["token"]);
