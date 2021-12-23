@@ -6,7 +6,7 @@ class Conexion{
 
 		#PDO("nombre del servidor; nombre de la base de datos", "usuario", "contraseña")
 
-		$link = new PDO("mysql:host=localhost;dbname=curso-php", 
+		$link = new PDO("mysql:host=localhost;dbname=curso-php-udemy", 
 			            "root", 
 			            "");
 
