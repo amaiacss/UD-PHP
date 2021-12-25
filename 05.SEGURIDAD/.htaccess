@@ -1,10 +1,17 @@
+# Ayuda a ocultar los directorios de nuestro proyecto
+# Aqui se pueden creae las URL's amigables
+ 
 # Este archivo controla el acceso
 # se crea al lado del index
 
 #Indexar todos los directorios,esto quiere decir que si en la barra del navegador se intenta acceder a por ejemplo la carpeta modelos, no se puede, solo se puede acceder al index
 Options All -Indexes
 
+# Encender el motor de reescritura con la finalidad de poder crear URL´s amigables
 RewriteEngine On
+# Regla de reescritura con la Expresión regular que con caracteres indicados no los permita para las URL´s amigables
+    # Esta regla lo que hace es que Cuando encuentre index.php?pagina, lo sustituya con lo que hay despues del =
+    # EN este caso $1, es una variable que cambia segun lo que se ponga en el href del html
 RewriteRule ^([-a-zA-Z0-9/]+)$ index.php?pagina=$1
 
 #RewriteCond %{HTTP_HOST} !^$
@@ -19,6 +26,15 @@ deny from all
 </Files>
 
 # denegar acceso a robots maliciosos, extractores de webs y navegadores offline
+    # Esta informacion aparece en muchos blogs, p.e
+    #https://uniwebsidad.com/tutoriales/trucos-y-ejemplos-de-configuracion-del-archivo-htaccess-de-apache?from=librosweb
+
+    #https://ayudawp.com/todo-sobre-htaccess/#Limitando_metodos_de_peticion_GET_yPUT_al_servidor
+
+    #http://www.emenia.es/como-crear-urls-amigables-con-htaccess/
+
+    #https://www.webempresa.com/blog/codigos-utiles-htaccess-para-wordpress.html
+    
 RewriteBase /
 RewriteCond %{HTTP_USER_AGENT} ^Anarchie [OR]
 RewriteCond %{HTTP_USER_AGENT} ^ASPSeek [OR]
@@ -29,11 +45,3 @@ RewriteCond %{HTTP_USER_AGENT} ^Xenu [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Zeus.*Webster [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Zeus
 RewriteRule ^.* - [F,L]
-
-#https://uniwebsidad.com/tutoriales/trucos-y-ejemplos-de-configuracion-del-archivo-htaccess-de-apache?from=librosweb
-
-#https://ayudawp.com/todo-sobre-htaccess/#Limitando_metodos_de_peticion_GET_yPUT_al_servidor
-
-#http://www.emenia.es/como-crear-urls-amigables-con-htaccess/
-
-#https://www.webempresa.com/blog/codigos-utiles-htaccess-para-wordpress.html
