@@ -1,3 +1,8 @@
+<?php
+
+$blog = ControladorBlog::ctrMostrarBlog();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +11,28 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title>Juanito Travel</title>
+	<title><?php echo $blog["titulo"]?></title>
+
+	<meta name="title" content="<?php echo $blog["titulo"]; ?>">
+	<meta name="description" content="<?php echo $blog["descripcion"]; ?>">
+
+	<?php
+	// En la BD las palabras claves están guardadas como si fuera un array, pero si se recupera sin más, la BD nos trae un String, para recuperarlo como un array se utiliza json_decode
+		$palabras_claves = json_decode($blog["palabras_clave"],true);
+
+		// Ahora recorremos el array para mostrar cada una de las palabras en meta= keywords
+		$p_claves = "";
+		foreach($palabras_claves as $key => $valor) {
+			$p_claves .= $valor.", ";
+		}
+		// Eliminamos la última coma y espacio
+		$p_claves = substr($p_claves, 0, -2);
+	?>
+
+	<meta name="keywords" content="<?php echo $p_claves; ?>">
 
 	<link rel="icon" href="vistas/img/icono.jpg">
+	
 
 	<!--=====================================
 	PLUGINS DE CSS
