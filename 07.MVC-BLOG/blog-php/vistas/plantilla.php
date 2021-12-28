@@ -1,6 +1,7 @@
 <?php
 
 $blog = ControladorBlog::ctrMostrarBlog();
+$categorias = ControladorBlog::ctrMostrarCategorias();
 
 ?>
 <!DOCTYPE html>
