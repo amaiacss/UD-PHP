@@ -3,8 +3,10 @@
 $blog = ControladorBlog::ctrMostrarBlog();
 $categorias = ControladorBlog::ctrMostrarCategorias(null, null); 
 $articulos =  ControladorBlog::ctrMostrarConInnerJoin(0, 5, null, null);
+// Recoge el total de los articulos y poder utilizar en la paginación
 $totalArticulos = ControladorBlog::ctrMostrarTotalArticulos(null, null);
-
+// Hacemos el calculo del total de paginas (5 articulos por cada pagina)
+// ceil redondea hacia arriba
 $totalPaginas = ceil(count($totalArticulos)/5);
 
 ?>
@@ -187,7 +189,7 @@ $totalPaginas = ceil(count($totalArticulos)/5);
 
 	?>
 
-	<link rel="icon" href="<?php #echo $blog["dominio"];?>vistas/img/icono.jpg">
+	<link rel="icon" href="<?php echo $blog["dominio"];?>vistas/img/icono.jpg">
 
 	<!--=====================================
 	PLUGINS DE CSS
@@ -201,12 +203,12 @@ $totalPaginas = ceil(count($totalArticulos)/5);
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
 
 	<!-- JdSlider -->
-	<link rel="stylesheet" href="<?php #echo $blog["dominio"];?>vistas/css/plugins/jquery.jdSlider.css">
+	<link rel="stylesheet" href="<?php echo $blog["dominio"];?>vistas/css/plugins/jquery.jdSlider.css">
 
 	<!-- Alertas Notie -->
-	<link rel="stylesheet" href="<?php #echo $blog["dominio"];?>vistas/css/plugins/notie.min.css">	
+	<link rel="stylesheet" href="<?php echo $blog["dominio"];?>vistas/css/plugins/notie.min.css">	
 
-	<link rel="stylesheet" href="<?php #echo $blog["dominio"];?>vistas/css/style.css">
+	<link rel="stylesheet" href="<?php echo $blog["dominio"];?>vistas/css/style.css">
 
 	<!--=====================================
 	PLUGINS DE JS
@@ -223,25 +225,25 @@ $totalPaginas = ceil(count($totalArticulos)/5);
 
 	<!-- JdSlider -->
 	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-	<script src="<?php #echo $blog["dominio"];?>vistas/js/plugins/jquery.jdSlider-latest.js"></script>
+	<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/jquery.jdSlider-latest.js"></script>
 	
 	<!-- pagination -->
 	<!-- http://josecebe.github.io/twbs-pagination/ -->
-	<script src="<?php #echo $blog["dominio"];?>vistas/js/plugins/pagination.min.js"></script>
+	<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/pagination.min.js"></script>
 
 	<!-- scrollup -->
 	<!-- https://markgoodyear.com/labs/scrollup/ -->
 	<!-- https://easings.net/es# -->
-	<script src="<?php #echo $blog["dominio"];?>vistas/js/plugins/scrollUP.js"></script>
-	<script src="<?php #echo $blog["dominio"];?>vistas/js/plugins/jquery.easing.js"></script>
+	<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/scrollUP.js"></script>
+	<script src="<?php echo $blog["dominio"];?>vistas/js/plugins/jquery.easing.js"></script>
 
 	<!-- Shape Share -->
 	<!-- https://www.jqueryscript.net/social-media/Social-Share-Plugin-jQuery-Open-Graph-Shape-Share.html -->
-	<script src="<?php #echo $blog["dominio"]; ?>vistas/js/plugins/shape.share.js"></script>
+	<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/shape.share.js"></script>
 
 	<!-- Alertas Notie
 	https://github.com/jaredreich/notie-->
-	<script src="<?php #echo $blog["dominio"]; ?>vistas/js/plugins/notie.min.js"></script>
+	<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/notie.min.js"></script>
 
 
 </head>
@@ -264,7 +266,7 @@ $totalPaginas = ceil(count($totalArticulos)/5);
 	=============================================*/
 
 	$validarRuta = "";
-
+	// Si existe la variable 'pagina'(.htacess)
 	if(isset($_GET["pagina"])){
 
 		$rutas = explode("/", $_GET["pagina"]);
@@ -278,7 +280,7 @@ $totalPaginas = ceil(count($totalArticulos)/5);
 			$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, null, null);
 
 		}else{
-
+			// $categorias contiene centroamerica, africa, asia.....
 			foreach ($categorias as $key => $value) {
 			
 				if($rutas[0] == $value["ruta_categoria"]){
@@ -361,7 +363,7 @@ $totalPaginas = ceil(count($totalArticulos)/5);
 			include "paginas/inicio.php";
 
 		}else{
-
+			// PAGINA DE ERROR si no  se solicita ninguna de las paginas/rutas anteriores
 			include "paginas/404.php";
 		}
 

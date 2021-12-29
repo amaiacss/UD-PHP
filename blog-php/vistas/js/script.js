@@ -93,8 +93,9 @@ $(".grid figure, .gridFooter figure").click(function(){
 /*=============================================
 PAGINACIÓN
 =============================================*/
-
+// Capturamos de la clase pagination el atributo 'totalPaginas', que es el que tiene el calculo del total de paginas que se necesitan para mostrar los articulos
 var totalPaginas = Number($(".pagination").attr("totalPaginas"));
+// Capturamos de la clase pagination el atributo 'paginaActual'
 var paginaActual = Number($(".pagination").attr("paginaActual"));
 var rutaActual = $("#rutaActual").val();
 var rutaPagina = $(".pagination").attr("rutaPagina");

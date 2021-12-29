@@ -1,4 +1,7 @@
+# este archivo se coloca al lado del index
 Options All -Indexes
 
+# USO DE URL AMIGABLES, se activa con RewriteEngine
+# RewriteRule es la regla que permite determinados caracteres
 RewriteEngine On
 RewriteRule ^([-a-zA-Z0-9_/]+)$ index.php?pagina=$1

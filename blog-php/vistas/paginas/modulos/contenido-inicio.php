@@ -33,10 +33,8 @@ CONTENIDO INICIO
 
 			<div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
 
-
+				<!-- RECORREMOS LOS ARTICULOS DE LA BASE DE DATOS -->
 				<?php foreach ($articulos as $key => $value): ?>
-				
-
 					<!-- ARTÍCULOS -->
 
 					<div class="row">
@@ -68,6 +66,7 @@ CONTENIDO INICIO
 					
 				<?php endforeach ?>
 
+				<!-- PAGINACIÓN INFERIOR -->
 				<div class="container d-none d-md-block">
 					
 					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
